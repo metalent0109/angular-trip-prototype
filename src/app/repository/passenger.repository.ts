@@ -37,9 +37,9 @@ export class PassengerRepository extends Repository<Passenger> {
   }
 
   findByEmailAndPassword(email: string, password: string): Passenger | null {
-    const users: Array<Passenger> = this.all();
-    const user: Passenger | undefined = users.find((passenger: Passenger) =>
-      passenger.email === email && passenger.password === password);
-    return user === undefined ? null : user;
+    const passenger: Passenger | undefined = this.all().find((passenger: Passenger) =>
+      passenger.email === email && passenger.password === password
+    );
+    return passenger === undefined ? null : passenger;
   }
 }

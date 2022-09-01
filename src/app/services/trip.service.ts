@@ -37,21 +37,23 @@ export class TripService {
   }
 
   done(booked: Booked, review: Review): void {
-    this.passengerRepository.done(<Visited>{
+    const visited = <Visited>{
       uid: uuid(),
       createdAt: new Date(),
       updatedAt: new Date(),
       trip: booked.trip,
       review: review,
-    });
+    };
+    this.passengerRepository.done(visited);
+    this.tripRepository.addReview(visited);
     this.passengerRepository.remove(booked.trip);
   }
 
-  rate(visited: Visited): number {
-    return visited.trip.review.reduce((accumulator: number, review: Review) => accumulator + review.rate.valueOf(), 0);
+  rate(trip: Trip): number {
+    return trip.review.reduce((accumulator: number, review: Review) => accumulator + review.rate.valueOf(), 0);
   }
 
-  reviews(trip: Trip): number {
+  numberOfReviews(trip: Trip): number {
     return trip.review.length;
   }
 }
