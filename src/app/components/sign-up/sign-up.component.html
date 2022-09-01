@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <div class="offset-3 col-6">
+      <div class="card my-5">
+        <div class="card-header bg-primary text-white">
+          <h3 class="m-0">Registrujte se</h3>
+        </div>
+        <div class="card-body">
+          <form id="sign-up" method="post">
+            <div class="form-group my-3">
+              <label for="name">
+                <strong>
+                  <span class="text-danger">*</span>
+                </strong> Ime:
+              </label>
+              <input class="form-control" id="name" name="name" type="text">
+            </div>
+            <div class="form-group my-3">
+              <label for="surname">
+                <strong>
+                  <span class="text-danger">*</span>
+                </strong> Prezime:
+              </label>
+              <input class="form-control" id="surname" name="surname" type="text">
+            </div>
+            <div class="form-group my-3">
+              <label for="email">
+                <strong>
+                  <span class="text-danger">*</span>
+                </strong> Adresa e-pošte:
+              </label>
+              <input class="form-control" id="email" name="email" type="email">
+            </div>
+            <div class="form-group my-3">
+              <label for="password">
+                <strong>
+                  <span class="text-danger">*</span>
+                </strong> Lozinka:
+              </label>
+              <input class="form-control" id="password" name="password" type="password">
+            </div>
+            <div class="form-group my-3">
+              <label for="phone">
+                <strong>
+                  <span class="text-danger">*</span>
+                </strong> Broj telefona:
+              </label>
+              <input class="form-control" id="phone" name="phone" type="text">
+            </div>
+            <div class="form-group my-3">
+              <label for="address">
+                <strong>
+                  <span class="text-danger">*</span>
+                </strong> Adresa:
+              </label>
+              <input class="form-control" id="address" name="address" type="text">
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">
+          <div class="row">
+            <div class="col-6">
+              <button class="btn btn-primary" form="sign-up" title="Registrujte se" type="submit">
+                Registrujte se
+              </button>
+            </div>
+            <div class="col-6 text-end">
+              <a class="btn btn-link" routerLink="" title="Prijavite se">
+                Prijavite se
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
