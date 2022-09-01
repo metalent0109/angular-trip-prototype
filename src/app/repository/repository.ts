@@ -6,38 +6,38 @@ export abstract class Repository<T extends Base> {
   protected key: string | undefined;
 
   count(): number {
-    return this.findAll().length;
+    return this.all().length;
   }
 
   exists(uid: string): boolean {
-    return this.findById(uid) !== null;
+    return this.find(uid) !== null;
   }
 
   save(entity: T): T {
-    let trips: Array<T> = this.findAll();
+    let trips: Array<T> = this.all();
     trips.push(entity);
     this.saveBatchToLocalStorage(trips);
     return entity;
   }
 
-  findAll(): Array<T> {
+  all(): Array<T> {
     let trips: string | null = this.fetchFromLocalStorage();
     return trips === null ? [] : JSON.parse(trips);
   }
 
-  findById(uid: string): T | null {
-    let trip: T | undefined = this.findAll().find((t: T) => t.uid === uid);
+  find(uid: string): T | null {
+    let trip: T | undefined = this.all().find((t: T) => t.uid === uid);
     return trip === undefined ? null : trip;
   }
 
   modify(entity: T): T {
-    let entities: Array<T> = this.findAll();
+    let entities: Array<T> = this.all();
     this.saveBatchToLocalStorage(entities.map((t: T): T => t.uid === entity.uid ? entity : t));
     return entity;
   }
 
   delete(entity: T): void {
-    let entities: Array<T> = this.findAll();
+    let entities: Array<T> = this.all();
     this.saveBatchToLocalStorage(entities.filter((t: T): boolean => t.uid !== entity.uid));
   }
 
