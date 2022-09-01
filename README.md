@@ -1,27 +1,87 @@
-# Trip
+# Uvod
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.3.
+**Pažljivo** pročitati tekst zadatka **pre početka** realizacije prototipa. **Zahtevi** su definisani **okvirno** i
+od studenta se očekuje da ih dalje **konkretizuje** i kritički analizira u skladu sa sopstvenim
+pretpostavkama. Cilj projekta je razvijanje samostalnog, kreativnog i kritičkog razmišljanja u
+rešavanju praktičnih problema razvoja korisničkog interfejsa.
 
-## Development server
+# Tema
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Potrebno je realizovati prototip korisničkog interfejsa za _naručivanje i organizaciju putovanja._
+Aplikacija treba da omogući **pretragu** i **naručivanje** putovanja.
+Aplikacija inicijalno sadrži predefinisan i ponuđen skup putovanja (minimum 10) koje je potrebno
+unapred kreirati.
+Potrebno je omogućiti pretragu prefinisanog skupa kroz zadavanje odvojenih kriterijuma u koje
+spadaju: vrsta putovanja (na primer, avion, voz, autobus), odredište i udaljenost, (rang) cena,
+vreme putovanja, i recenzije drugih korisnika koji su prethodno obavili slično putovanje u pogledu
+izabranih parametara.
 
-## Code scaffolding
+Kada putnik **Rezerviše** putovanje, dobija odgovarajuće obaveštenje i rezervisano putovanje se
+dodaje u njegovu **Korpu** putovanja.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Pored pretrage, putnik može ručno pregledati i birati putovanja iz predefinisanog skupa. Za svako
+putovanje prikazati vrstu, naziv, opis i udaljenost odredišta, cenu, vreme putovanja i recenzije
+korisnika koji su prethodno obavili putovanje.
 
-## Build
+Korpa sadrži sve informacije o rezervisanim putovanjima i automatski računa ukupnu cenu.
+Putovanje sadrži vrstu, naziv, opis i udaljenost odredišta, cenu, vreme putovanja, status
+('završeno', 'predstojeće', 'otkazano'), i ocenu (samo za putovanje datog korisnika u statusu
+'završeno').
+Putnik može vršiti pretragu, rezervaciju, modifikaciju i brisanje **putovanja**.
+Pretraga i rezervacija se vrše iz predefinisanog/ponuđenog skupa putovanja na način opisan
+iznad. Putnik može brisati putovanja iz korpe koja se nalaze u statusu 'završeno', dok može
+menjati putovanja iz korpe u statusu 'otkazano' ili 'predstojeće'.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Vrednovanja kao **ocena** su deo svakog putovanja. Prezentacija vrednovanja je stvar kreativnosti
+autora (simboli, tekst ili kombinacija), ali mora biti vidljivo istaknuta i lako razumljiva. Putnik može
+ocenjivati samo putovanja koja je prethodno rezervisao i koja imaju status 'završeno'.
 
-## Running unit tests
+Aplikacija ima jedan tip korisnika - **putnik**. Svaki korisnik ima lični **profil** koji sadrži podatke koji
+uključuju ime i prezime, kontakt podatke (email, telefon, adresa), podatke o omiljenim vrstama
+putovanja i odredištima, i podatke za prijavljivanje u aplikaciju. Podaci profila se mogu menjati.
+Korisnik može da pregleda sadržaj koji je dostupan, putovanja, čita recenzije drugih zadovoljnih ili
+nezadovoljnih putnika, kao i da dodaje putovanja od interesa u svoju korpu.
+Ukoliko korisnik želi da izvršu rezervaciju ili pristupi svojoj korpi i putovanjima koja se nalaze u njoj,
+mora se **prijaviti** (ukoliko ima svoj nalog) ili **registrovati** (ukoliko nema svoj nalog). Prilikom
+registracije korisnik mora uneti sve podatke profila.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Prototip se realizuje na uređaju po izboru (telefon, tablet, laptop).
 
-## Running end-to-end tests
+# Zadatak
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Realizovati računarski prototip korisničkog interfejsa Veb klijentske aplikacije sa simulacijom
+pozadinske logike preko TypeScript interfejsa i Angular servisa. Prototip realizovati korišćenjem
+AngularJS tehnologije obrađene u okviru kursa.
 
-## Further help
+Za završni ispit potrebno je dostaviti programski kod prototipa i pdf dokument sa dokumentovanim
+kopijama izgleda stranica interfejsa (jedan prikaz po stranici dokumenta, opis ispod slike). Na
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+svakoj stranici dokumentovati izgled kao sažet opis funkcije (ne izgleda i rasporeda kontrola
+korisničkog interfejsa).
+
+Primer:
+_Funkcija: Pretraga vožnji. Koriste se kriterijumi za pretragu kao podaci o ..._
+
+Poželjno je (ne i obavezno, i ne utiče na ocenu) da studenti kreiraju video snimak simulacije
+korišćenja aplikacije i dostave adresu snimka postavljenog online (Google Drive, DropBox, Vimeo i
+slične platforme). Snimak se može kreirati korišćenjem softvera za snimanje ekrana ( _screen
+recording_ ) ili kamere. Snimak ne treba da bude duži od 5 minuta (ovo nije zahtev već ograničenje).
+
+# Prototip	aplikacije
+
+Prototip obuhvata korisnički interfejs i simulaciju pozadinske logike. Implementacija podrazumeva:
+
+- Izgled stranica i dijaloga (kontrole interfejsa i njihov raspored),
+- Navigacija između stranica i drugih oblika prikaza (otvaranje i zatvaranje dijaloga i formi),
+- Simulacija pozadinske logike preko interfejsa koji definišu strukturu podataka aplikcije i servisa
+  koji rade sa strukturom podataka koju definišu interfejsi (čitanje, upis, izmena i brisanje
+  podataka u toku sesije korišćenja aplikacije).
+
+# Predaja
+
+Predaja projekta se vrši isključivo elektronskim putem, na način koji će biti naknadno objavljen.
+Rok za predaju projekta, kao i datum odbrane će biti blagovremeno objavljeni na sajtu predmeta
+pred svaki ispitni rok.
+
+
