@@ -21,10 +21,6 @@ export class TripService {
     return this.tripRepository.findAll();
   }
 
-  fromFile(): Array<Trip> {
-    return this.tripRepository.fromFile();
-  }
-
   addToFavourites(trip: Trip): void {
     this.passengerRepository.favourites(trip);
   }

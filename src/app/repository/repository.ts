@@ -35,7 +35,7 @@ export abstract class Repository<T extends Base> {
     this.removeFromLocalStorage();
   }
 
-  private storeToLocalStorage(entities: Array<T>): Array<T> {
+  protected storeToLocalStorage(entities: Array<T>): Array<T> {
     if (this.key === undefined) {
       throw new LocalStorageKeyUndefinedException();
     }
@@ -43,14 +43,14 @@ export abstract class Repository<T extends Base> {
     return entities;
   }
 
-  private getFromLocalStorage(): string | null {
+  protected getFromLocalStorage(): string | null {
     if (this.key === undefined) {
       throw new LocalStorageKeyUndefinedException();
     }
     return localStorage.getItem(this.key);
   }
 
-  private removeFromLocalStorage(): void {
+  protected removeFromLocalStorage(): void {
     if (this.key === undefined) {
       throw new LocalStorageKeyUndefinedException();
     }

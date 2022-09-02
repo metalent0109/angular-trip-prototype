@@ -33,7 +33,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngIf="tripService.fromFile().length === 0; else trips">
+              <tr *ngIf="tripService.all().length === 0; else trips">
                 <td class="align-middle text-center" colspan="10">
                   <span class="text-danger">
                     <strong>Trenutno nema aktivnih putovanja.</strong>
@@ -41,7 +41,7 @@
                 </td>
               </tr>
               <ng-template #trips>
-                <tr *ngFor="let trip of tripService.fromFile(); let i = index" [attr.data-index]="i">
+                <tr *ngFor="let trip of tripService.all(); let i = index" [attr.data-index]="i">
                   <td class="align-middle text-center">{{ i + 1 }}</td>
                   <td class="align-middle text-center">{{ trip.name }}</td>
                   <td class="align-middle text-center">{{ trip.type.toString().toUpperCase() }}</td>

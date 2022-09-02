@@ -9,8 +9,9 @@ export class TripRepository extends Repository<Trip> {
 
   protected override key: string = 'trips';
 
-  fromFile(): Array<Trip> {
-    return tripsFromFile.map((t: any) => <Trip>t);
+  override findAll(): Array<Trip> {
+    let e: string | null = this.getFromLocalStorage();
+    return e === null ? tripsFromFile.map((t: any) => <Trip>t) : JSON.parse(e);
   }
 
   review(visited: Visited): void {
