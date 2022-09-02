@@ -45,10 +45,10 @@
                   <td class="align-middle text-center">{{ i + 1 }}</td>
                   <td class="align-middle text-center">{{ trip.name }}</td>
                   <td class="align-middle text-center">{{ trip.type.toString().toUpperCase() }}</td>
-                  <td class="align-middle text-center">{{ trip.distance }}</td>
+                  <td class="align-middle text-center">{{ trip.distance | number:'1.2-2' }}</td>
                   <td class="align-middle text-center">{{ trip.duration | date:'hh:mm' }}</td>
-                  <td class="align-middle text-center">{{ trip.price }}</td>
-                  <td class="align-middle text-center">{{ tripService.tripRating(trip) }}</td>
+                  <td class="align-middle text-center">{{ trip.price | currency }}</td>
+                  <td class="align-middle text-center">{{ tripService.tripRating(trip) | number:'1.2-2' }}</td>
                   <td class="align-middle text-center">
                     <button [routerLink]="['trip/:uid', trip.uid]" class="btn btn-info rounded-1" type="button">
                       <i class="fa-solid fa-circle-info text-white"></i>

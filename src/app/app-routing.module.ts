@@ -22,22 +22,22 @@ const routes: Routes = [
   },
   {
     path: 'trips',
-    title: 'Putovanja',
+    title: 'Ponuda putovanja',
     component: TripsComponent,
     children: [
       {
         path: 'favourites',
-        title: 'Potencijalna',
+        title: 'Potencijalna putovanja',
         component: TripsComponent,
       },
       {
         path: 'booked',
-        title: 'Predstojeća',
+        title: 'Predstojeća putovanja',
         component: TripsComponent,
       },
       {
         path: 'visited',
-        title: 'Istorija',
+        title: 'Istorija putovanja',
         component: TripsComponent,
       },
     ]
