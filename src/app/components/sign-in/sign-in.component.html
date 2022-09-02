@@ -9,11 +9,9 @@
           <form (ngSubmit)="onSubmit()" [formGroup]="authFrom" id="sign-in" method="post">
             <div class="form-group my-3">
               <label for="email">
-                <strong>
-                  <span class="text-danger">*</span>
-                </strong> Adresa e-pošte:
+                <strong>Adresa e-pošte: <span class="text-danger">*</span></strong>
               </label>
-              <input class="form-control" formControlName="email" id="email" type="email">
+              <input class="form-control rounded-1" formControlName="email" id="email" type="email">
               <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="my-1 text-danger">
                 <small *ngIf="email?.errors?.['required']">Polje adresa e-pošte je obavezno!</small>
                 <small *ngIf="email?.errors?.['email']">Adresa e-pošte nije validna!</small>
@@ -21,11 +19,9 @@
             </div>
             <div class="form-group my-3">
               <label for="password">
-                <strong>
-                  <span class="text-danger">*</span>
-                </strong> Lozinka:
+                <strong>Lozinka: <span class="text-danger">*</span></strong>
               </label>
-              <input class="form-control" formControlName="password" id="password" type="password">
+              <input class="form-control rounded-1" formControlName="password" id="password" type="password">
               <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="my-1 text-danger">
                 <small *ngIf="password?.errors?.['required']">Polje lozinka je obavezno!</small>
               </div>
@@ -35,12 +31,12 @@
         <div class="card-footer">
           <div class="row">
             <div class="col-6">
-              <button class="btn btn-primary" form="sign-in" title="Prijavite se" type="submit">
+              <button class="btn btn-primary rounded-1" form="sign-in" title="Prijavite se" type="submit">
                 Prijavite se
               </button>
             </div>
             <div class="col-6 text-end">
-              <a class="btn btn-link" routerLink="/sign-up" title="Registracija korisnika">
+              <a class="btn btn-link rounded-1" routerLink="/sign-up" title="Registracija korisnika">
                 Registracija korisnika
               </a>
             </div>

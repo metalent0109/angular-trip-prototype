@@ -9,63 +9,51 @@
           <form (ngSubmit)="onSubmit()" [formGroup]="passengerFrom" id="sign-up" method="post">
             <div class="form-group my-3">
               <label for="name">
-                <strong>
-                  <span class="text-danger">*</span>
-                </strong> Ime:
+                <strong>Ime: <span class="text-danger">*</span></strong>
               </label>
-              <input class="form-control" [formControlName]="passenger.name" id="name" type="text">
+              <input class="form-control rounded-1" [formControlName]="passenger.name" id="name" type="text">
             </div>
             <div class="form-group my-3">
               <label for="surname">
-                <strong>
-                  <span class="text-danger">*</span>
-                </strong> Prezime:
+                <strong>Prezime: <span class="text-danger">*</span></strong>
               </label>
-              <input class="form-control" formControlName="surname" id="surname" type="text">
+              <input class="form-control rounded-1" formControlName="surname" id="surname" type="text">
             </div>
             <div class="form-group my-3">
               <label for="email">
-                <strong>
-                  <span class="text-danger">*</span>
-                </strong> Adresa e-pošte:
+                <strong>Adresa e-pošte: <span class="text-danger">*</span></strong>
               </label>
-              <input class="form-control" formControlName="email" id="email" type="email">
+              <input class="form-control rounded-1" formControlName="email" id="email" type="email">
             </div>
             <div class="form-group my-3">
               <label for="password">
-                <strong>
-                  <span class="text-danger">*</span>
-                </strong> Lozinka:
+                <strong>Lozinka: <span class="text-danger">*</span></strong>
               </label>
-              <input class="form-control" formControlName="password" id="password" type="password">
+              <input class="form-control rounded-1" formControlName="password" id="password" type="password">
             </div>
             <div class="form-group my-3">
               <label for="phone">
-                <strong>
-                  <span class="text-danger">*</span>
-                </strong> Broj telefona:
+                <strong>Broj telefona: <span class="text-danger">*</span></strong>
               </label>
-              <input class="form-control" formControlName="phone" id="phone" type="text">
+              <input class="form-control rounded-1" formControlName="phone" id="phone" type="text">
             </div>
             <div class="form-group my-3">
               <label for="address">
-                <strong>
-                  <span class="text-danger">*</span>
-                </strong> Adresa:
+                <strong>Adresa: <span class="text-danger">*</span></strong>
               </label>
-              <input class="form-control" formControlName="address" id="address" type="text">
+              <input class="form-control rounded-1" formControlName="address" id="address" type="text">
             </div>
           </form>
         </div>
         <div class="card-footer">
           <div class="row">
             <div class="col-6">
-              <button class="btn btn-primary" form="sign-up" title="Registrujte se" type="submit">
+              <button class="btn btn-primary rounded-1" form="sign-up" title="Registrujte se" type="submit">
                 Registrujte se
               </button>
             </div>
             <div class="col-6 text-end">
-              <a class="btn btn-link" routerLink="" title="Prijava korisnika">
+              <a class="btn btn-link rounded-1" routerLink="" title="Prijava korisnika">
                 Prijava korisnika
               </a>
             </div>

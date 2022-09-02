@@ -10,7 +10,7 @@
               </h3>
             </div>
             <div class="col-6 text-end">
-              <button class="btn btn-primary rounded-1" type="button">
+              <button class="btn btn-primary rounded-1" type="button" title="Filteri">
                 <i class="fa-solid fa-filter"></i>
               </button>
             </div>
@@ -50,17 +50,20 @@
                 <td class="align-middle text-center">{{ trip.price | currency }}</td>
                 <td class="align-middle text-center">{{ tripService.tripRating(trip) | number:'1.2-2' }}</td>
                 <td class="align-middle text-center">
-                  <button [routerLink]="['trip/:uid', trip.uid]" class="btn btn-info rounded-1" type="button">
+                  <button [routerLink]="['trip/:uid', trip.uid]" class="btn btn-info rounded-1" type="button"
+                          title="Detalji">
                     <i class="fa-solid fa-circle-info text-white"></i>
                   </button>
                 </td>
                 <td class="align-middle text-center">
-                  <button (click)="tripService.addToCart(trip)" class="btn btn-success rounded-1" type="button">
+                  <button (click)="tripService.addToCart(trip)" class="btn btn-success rounded-1" type="button"
+                          title="Rezerviši">
                     <i class="fa-solid fa-circle-plus"></i>
                   </button>
                 </td>
                 <td class="align-middle text-center">
-                  <button (click)="tripService.addToFavourites(trip)" class="btn btn-warning rounded-1" type="button">
+                  <button (click)="tripService.addToFavourites(trip)" class="btn btn-warning rounded-1" type="button"
+                          title="Planiraj">
                     <i class="fa-solid fa-star"></i>
                   </button>
                 </td>

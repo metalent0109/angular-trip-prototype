@@ -24,6 +24,7 @@ export class SignInComponent implements OnInit {
   }
 
   onSubmit(): void {
+
     if (this.authFrom.valid) {
       console.log(this.authFrom.value);
     }
