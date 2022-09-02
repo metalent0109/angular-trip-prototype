@@ -1,5 +1,5 @@
 export enum Type {
-  AIRPLANE = 'airplane',
-  TRAIN = 'train',
-  BUS = 'bus',
+  AIRPLANE = 'avion',
+  TRAIN = 'voz',
+  BUS = 'autobus',
 }

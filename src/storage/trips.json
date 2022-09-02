@@ -1,14 +1,14 @@
 [
   {
-    "uid": "",
+    "uid": "62a03e2c-0b0b-421b-8bc9-abf51953672e",
     "createdAt": "",
     "updatedAt": "",
-    "type": "",
-    "name": "",
-    "description": "",
-    "distance": "",
-    "price": "",
-    "duration": "",
+    "type": "avion",
+    "name": "Example 1",
+    "description": "Example description",
+    "distance": 100.00,
+    "price": 1000.00,
+    "duration": "2022-09-20 15:00:00",
     "review": []
   }
 ]
