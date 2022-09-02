@@ -5,19 +5,21 @@ import {Visited} from "../models/visited";
 import {Trip} from "../models/trip";
 import {Injectable} from "@angular/core";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class PassengerRepository extends Repository<Passenger> {
 
-  protected override key: string = 'passengers';
-
   public passenger: Passenger = <Passenger>{};
+
+  protected override key: string = 'passengers';
 
   constructor() {
     super();
   }
 
   cart(trip: Trip): void {
-    let cart: Array<Trip> = this.passenger.cart;
+    const cart: Array<Trip> = this.passenger.cart;
     if (cart.find((t: Trip): boolean => t.uid === trip.uid) === undefined) {
       this.passenger.cart.push(trip);
       this.save(this.passenger);
@@ -30,7 +32,7 @@ export class PassengerRepository extends Repository<Passenger> {
   }
 
   favourites(trip: Trip): void {
-    let favourites: Array<Trip> = this.passenger.favourites;
+    const favourites: Array<Trip> = this.passenger.favourites;
     if (favourites.find((t: Trip): boolean => t.uid === trip.uid) === undefined) {
       this.passenger.favourites.push(trip);
       this.save(this.passenger);

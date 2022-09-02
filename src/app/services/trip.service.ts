@@ -8,7 +8,9 @@ import {Visited} from "../models/visited";
 import {v4 as uuid} from "uuid";
 import {Injectable} from "@angular/core";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TripService {
 
   constructor(

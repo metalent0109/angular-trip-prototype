@@ -3,7 +3,7 @@
     <div class="offset-3 col-6">
       <div class="card my-5">
         <div class="card-header">
-          <h1 class="m-0">Korisnički interfejs</h1>
+          <h1 class="m-0">Prijava korisnika</h1>
         </div>
         <div class="card-body">
           <form (ngSubmit)="onSubmit()" [formGroup]="authFrom" id="sign-in" method="post">
@@ -13,7 +13,11 @@
                   <span class="text-danger">*</span>
                 </strong> Adresa e-pošte:
               </label>
-              <input class="form-control" formControlName="email" id="email" name="email" type="email">
+              <input class="form-control" formControlName="email" id="email" type="email">
+              <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="my-1 text-danger">
+                <small *ngIf="email?.errors?.['required']">Polje adresa e-pošte je obavezno!</small>
+                <small *ngIf="email?.errors?.['email']">Adresa e-pošte nije validna!</small>
+              </div>
             </div>
             <div class="form-group my-3">
               <label for="password">
@@ -21,7 +25,10 @@
                   <span class="text-danger">*</span>
                 </strong> Lozinka:
               </label>
-              <input class="form-control" formControlName="password" id="password" name="password" type="password">
+              <input class="form-control" formControlName="password" id="password" type="password">
+              <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="my-1 text-danger">
+                <small *ngIf="password?.errors?.['required']">Polje lozinka je obavezno!</small>
+              </div>
             </div>
           </form>
         </div>
@@ -33,8 +40,8 @@
               </button>
             </div>
             <div class="col-6 text-end">
-              <a class="btn btn-link" routerLink="/sign-up" title="Registrujte se">
-                Registrujte se
+              <a class="btn btn-link" routerLink="/sign-up" title="Registracija korisnika">
+                Registracija korisnika
               </a>
             </div>
           </div>

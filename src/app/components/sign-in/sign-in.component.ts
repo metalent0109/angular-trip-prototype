@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Auth} from "../../models/auth";
 
 @Component({
@@ -8,21 +8,32 @@ import {Auth} from "../../models/auth";
   styleUrls: ['./sign-in.component.css']
 })
 export class SignInComponent implements OnInit {
-
-  public auth = <Auth>{email: '', password: ''}
-
-  public authFrom = this.formBuilder.group(this.auth);
-
-  constructor(
-    private formBuilder: FormBuilder,
-  ) {
-  }
+  auth: Auth = <Auth>{email: '', password: ''};
+  authFrom: any;
 
   ngOnInit(): void {
-
+    this.authFrom = new FormGroup({
+      email: new FormControl(this.auth.email, [
+        Validators.required,
+        Validators.email,
+      ]),
+      password: new FormControl(this.auth.password, [
+        Validators.required
+      ]),
+    });
   }
 
   onSubmit(): void {
-    console.log(this.authFrom.value);
+    if (this.authFrom.valid) {
+      console.log('Done!');
+    }
+  }
+
+  get email() {
+    return this.authFrom.get('email');
+  }
+
+  get password(): any {
+    return this.authFrom.get('password');
   }
 }

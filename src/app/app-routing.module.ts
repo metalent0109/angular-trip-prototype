@@ -7,17 +7,17 @@ import {TripsComponent} from "./components/trips/trips.component";
 const routes: Routes = [
   {
     path: '',
-    title: 'Prijava',
+    title: 'Prijava korisnika',
     component: SignInComponent
   },
   {
     path: 'sign-up',
-    title: 'Registracija',
+    title: 'Registracija korisnika',
     component: SignUpComponent
   },
   {
     path: 'sign-out',
-    title: 'Odjava',
+    title: 'Odjava korisnika',
     component: SignUpComponent
   },
   {

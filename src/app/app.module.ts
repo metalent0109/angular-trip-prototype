@@ -7,9 +7,6 @@ import {SignInComponent} from './components/sign-in/sign-in.component';
 import {FormBuilder, FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {TripsComponent} from "./components/trips/trips.component";
-import {PassengerRepository} from "./repository/passenger.repository";
-import {TripRepository} from "./repository/trip.repository";
-import {TripService} from "./services/trip.service";
 
 @NgModule({
   declarations: [
@@ -26,9 +23,6 @@ import {TripService} from "./services/trip.service";
   ],
   providers: [
     FormBuilder,
-    PassengerRepository,
-    TripRepository,
-    TripService
   ],
   bootstrap: [AppComponent]
 })

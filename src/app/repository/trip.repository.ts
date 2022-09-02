@@ -4,7 +4,9 @@ import {Visited} from "../models/visited";
 import {Injectable} from "@angular/core";
 import tripsFromFile from '../../storage/trips.json';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TripRepository extends Repository<Trip> {
 
   protected override key: string = 'trips';

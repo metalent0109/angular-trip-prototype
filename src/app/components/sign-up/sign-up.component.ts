@@ -26,6 +26,7 @@ export class SignUpComponent implements OnInit {
     booked: [],
     visited: [],
   };
+
   public passengerFrom: FormGroup = this.formBuilder.group(this.passenger);
 
   constructor(
