@@ -5,67 +5,37 @@ export abstract class Repository<T extends Base> {
 
   protected key: string | undefined;
 
-  exists(uid: string): boolean {
-    return this.find(uid) !== null;
+  save(t: T): T {
+    let e = this.findAll();
+    e.push(t);
+    this.storeToLocalStorage(e);
+    return t;
   }
 
-  save(entity: T): T {
-    this.saveOneToLocalStorage(entity);
-    return entity;
+  findAll(): Array<T> {
+    let e: string | null = this.getFromLocalStorage();
+    return e === null ? [] : JSON.parse(e);
   }
 
-  replaceOne(entity: T): T {
-    this.deleteAll();
-    this.saveOneToLocalStorage(entity);
-    return entity;
+  findByUid(uid: string): T | null {
+    let e: T | undefined = this.findAll().find((t: T): boolean => t.uid === uid);
+    return e === undefined ? null : e;
   }
 
-  add(entity: T): Array<T> {
-    const trips: Array<T> = this.all();
-    trips.push(entity);
-    this.saveAllToLocalStorage(trips);
-    return trips;
+  modify(e: T): T {
+    this.storeToLocalStorage(this.findAll().map((t: T): T => t.uid === e.uid ? e : t));
+    return e;
   }
 
-  all(): Array<T> {
-    let trips: string | null = this.loadFromLocalStorage();
-    return trips === null ? [] : JSON.parse(trips);
+  deleteByUid(uid: string): void {
+    this.storeToLocalStorage(this.findAll().filter((t: T): boolean => t.uid !== uid));
   }
 
-  one(): T | null {
-    const entity: string | null = this.loadFromLocalStorage();
-    return entity === null ? null : JSON.parse(entity);
-  }
-
-  find(uid: string): T | null {
-    let trip: T | undefined = this.all().find((t: T) => t.uid === uid);
-    return trip === undefined ? null : trip;
-  }
-
-  modify(entity: T): T {
-    let entities: Array<T> = this.all();
-    this.saveAllToLocalStorage(entities.map((t: T): T => t.uid === entity.uid ? entity : t));
-    return entity;
-  }
-
-  delete(entity: T): void {
-    let entities: Array<T> = this.all();
-    this.saveAllToLocalStorage(entities.filter((t: T): boolean => t.uid !== entity.uid));
-  }
-
-  deleteAll(): void {
+  remove(): void {
     this.removeFromLocalStorage();
   }
 
-  protected saveOneToLocalStorage(entity: T): T {
-    if (this.key === undefined) {
-      throw new LocalStorageKeyUndefinedException();
-    }
-    localStorage.setItem(this.key, JSON.stringify(entity));
-    return entity;
-  }
-
-  protected saveAllToLocalStorage(entities: Array<T>): Array<T> {
+  private storeToLocalStorage(entities: Array<T>): Array<T> {
     if (this.key === undefined) {
       throw new LocalStorageKeyUndefinedException();
     }
@@ -73,14 +43,14 @@ export abstract class Repository<T extends Base> {
     return entities;
   }
 
-  protected loadFromLocalStorage(): string | null {
+  private getFromLocalStorage(): string | null {
     if (this.key === undefined) {
       throw new LocalStorageKeyUndefinedException();
     }
     return localStorage.getItem(this.key);
   }
 
-  protected removeFromLocalStorage(): void {
+  private removeFromLocalStorage(): void {
     if (this.key === undefined) {
       throw new LocalStorageKeyUndefinedException();
     }

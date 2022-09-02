@@ -8,7 +8,7 @@ export class TripRepository extends Repository<Trip> {
 
   protected override key: string = 'trips';
 
-  addReview(visited: Visited): void {
+  review(visited: Visited): void {
     this.modify(visited.trip);
   }
 }

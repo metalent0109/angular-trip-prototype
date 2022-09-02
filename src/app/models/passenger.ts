@@ -11,6 +11,7 @@ export interface Passenger extends Base {
   phone: string,
   address: string,
   favourites: Array<Trip>,
+  cart: Array<Trip>,
   booked: Array<Booked>,
   visited: Array<Visited>,
 }

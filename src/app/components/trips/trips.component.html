@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header">
+          <h1 class="m-0">Ponuda putovanja</h1>
+        </div>
+        <div class="card-body">
+          <table class="table table-borderless table-hover table-sm">
+            <thead>
+              <tr>
+                <th class="align-middle text-center">R. Br.</th>
+                <th class="align-middle text-center">Vrsta</th>
+                <th class="align-middle text-center">Naziv</th>
+                <th class="align-middle text-center">Udaljenost (km)</th>
+                <th class="align-middle text-center">Cena</th>
+                <th class="align-middle text-center">Vreme putovanja</th>
+                <th class="align-middle text-center">Recenzija</th>
+                <th class="align-middle text-center">Detalji</th>
+                <th class="align-middle text-center">Rezerviši</th>
+                <th class="align-middle text-center">Favoriti</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td *ngIf="tripService.all().length; else trips" colspan="9">
+                  <span class="text-danger">
+                    <strong>Trenutno nema aktivnih putovanja.</strong>
+                  </span>
+                </td>
+              </tr>
+              <ng-template #trips>
+                <tr *ngFor="let trip of tripService.all(); let i = index">
+                  <td class="align-middle text-center">{{ i }}</td>
+                  <td class="align-middle text-center">{{ trip.type.toString() }}</td>
+                  <td class="align-middle text-center">{{ trip.name }}</td>
+                  <td class="align-middle text-center">{{ trip.distance }}</td>
+                  <td class="align-middle text-center">{{ trip.price }}</td>
+                  <td class="align-middle text-center">{{ trip.duration | date:'h:i' }}</td>
+                  <td class="align-middle text-center">{{ tripService.tripRating(trip) }}</td>
+                  <td class="align-middle text-center">
+                    <button [routerLink]="['trip/:uid', trip.uid]" class="btn btn-success" type="button">
+                      Detalji
+                    </button>
+                  </td>
+                  <td class="align-middle text-center">
+                    <button (click)="tripService.addToCart(trip)" class="btn btn-primary" type="button">
+                      Dodaj u korpu
+                    </button>
+                  </td>
+                  <td class="align-middle text-center">
+                    <button (click)="tripService.addToFavourites(trip)" class="btn btn-primary" type="button">
+                      Dodaj u listu želja
+                    </button>
+                  </td>
+                </tr>
+              </ng-template>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

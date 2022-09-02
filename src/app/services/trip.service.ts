@@ -18,7 +18,23 @@ export class TripService {
   }
 
   all(): Array<Trip> {
-    return this.tripRepository.all();
+    return this.tripRepository.findAll();
+  }
+
+  addToFavourites(trip: Trip): void {
+    this.passengerRepository.favourites(trip);
+  }
+
+  removeFromFavourites(trip: Trip): void {
+    this.passengerRepository.removeFromFavourites(trip);
+  }
+
+  addToCart(trip: Trip): void {
+    this.passengerRepository.cart(trip);
+  }
+
+  removeFromCart(trip: Trip): void {
+    this.passengerRepository.removeFromCart(trip);
   }
 
   book(trip: Trip): void {
@@ -45,15 +61,14 @@ export class TripService {
       review: review,
     };
     this.passengerRepository.done(visited);
-    this.tripRepository.addReview(visited);
-    this.passengerRepository.remove(booked.trip);
+    this.tripRepository.review(visited);
   }
 
-  rate(trip: Trip): number {
+  tripRating(trip: Trip): number {
     return trip.review.reduce((accumulator: number, review: Review) => accumulator + review.rate.valueOf(), 0);
   }
 
-  numberOfReviews(trip: Trip): number {
+  tripNumberOfReviews(trip: Trip): number {
     return trip.review.length;
   }
 }

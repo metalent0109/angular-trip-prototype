@@ -3,10 +3,10 @@
     <div class="offset-3 col-6">
       <div class="card my-5">
         <div class="card-header bg-primary text-white">
-          <h3 class="m-0">Registrujte se</h3>
+          <h1 class="m-0">Registrujte se</h1>
         </div>
         <div class="card-body">
-          <form id="sign-up" method="post">
+          <form id="sign-up" method="post" (ngSubmit)="onSubmit()">
             <div class="form-group my-3">
               <label for="name">
                 <strong>

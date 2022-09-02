@@ -1,4 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Passenger} from "../../models/passenger";
+import {PassengerRepository} from "../../repository/passenger.repository";
 
 @Component({
   selector: 'app-sign-up',
@@ -7,10 +10,20 @@ import {Component, OnInit} from '@angular/core';
 })
 export class SignUpComponent implements OnInit {
 
-  constructor() {
+  public passenger: Passenger = <Passenger>{};
+  public passengerFromGroup: FormGroup = this.formBuilder.group(this.passenger);
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private passengerRepository: PassengerRepository,
+  ) {
   }
 
   ngOnInit(): void {
+
   }
 
+  onSubmit(): void {
+    this.passengerRepository.save(this.passengerFromGroup.value);
+  }
 }
