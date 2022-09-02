@@ -9,23 +9,23 @@ import {Auth} from "../../models/auth";
 })
 export class SignInComponent implements OnInit {
   auth: Auth = <Auth>{email: '', password: ''};
-  authFrom: any;
+  authFrom: FormGroup = new FormGroup({
+    email: new FormControl(this.auth.email, [
+      Validators.required,
+      Validators.email,
+    ]),
+    password: new FormControl(this.auth.password, [
+      Validators.required
+    ]),
+  });
 
   ngOnInit(): void {
-    this.authFrom = new FormGroup({
-      email: new FormControl(this.auth.email, [
-        Validators.required,
-        Validators.email,
-      ]),
-      password: new FormControl(this.auth.password, [
-        Validators.required
-      ]),
-    });
+
   }
 
   onSubmit(): void {
     if (this.authFrom.valid) {
-      console.log('Done!');
+      console.log(this.authFrom.value);
     }
   }
 
