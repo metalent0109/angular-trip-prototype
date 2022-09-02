@@ -2,18 +2,18 @@
   <div class="row">
     <div class="offset-3 col-6">
       <div class="card my-5">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header">
           <h1 class="m-0">Korisnički interfejs</h1>
         </div>
         <div class="card-body">
-          <form id="sign-in" method="post">
+          <form (ngSubmit)="onSubmit()" [formGroup]="authFrom" id="sign-in" method="post">
             <div class="form-group my-3">
               <label for="email">
                 <strong>
                   <span class="text-danger">*</span>
                 </strong> Adresa e-pošte:
               </label>
-              <input class="form-control" id="email" name="email" type="email">
+              <input class="form-control" formControlName="email" id="email" name="email" type="email">
             </div>
             <div class="form-group my-3">
               <label for="password">
@@ -21,7 +21,7 @@
                   <span class="text-danger">*</span>
                 </strong> Lozinka:
               </label>
-              <input class="form-control" id="password" name="password" type="password">
+              <input class="form-control" formControlName="password" id="password" name="password" type="password">
             </div>
           </form>
         </div>

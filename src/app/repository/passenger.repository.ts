@@ -10,7 +10,7 @@ export class PassengerRepository extends Repository<Passenger> {
 
   protected override key: string = 'passengers';
 
-  private passenger: Passenger = <Passenger>{};
+  public passenger: Passenger = <Passenger>{};
 
   constructor() {
     super();

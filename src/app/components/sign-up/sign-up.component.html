@@ -2,18 +2,18 @@
   <div class="row">
     <div class="offset-3 col-6">
       <div class="card my-5">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header">
           <h1 class="m-0">Registrujte se</h1>
         </div>
         <div class="card-body">
-          <form id="sign-up" method="post" (ngSubmit)="onSubmit()">
+          <form id="sign-up" method="post" (ngSubmit)="onSubmit()" [formGroup]="passengerFrom">
             <div class="form-group my-3">
               <label for="name">
                 <strong>
                   <span class="text-danger">*</span>
                 </strong> Ime:
               </label>
-              <input class="form-control" id="name" name="name" type="text">
+              <input class="form-control" id="name" formControlName="name" type="text">
             </div>
             <div class="form-group my-3">
               <label for="surname">
@@ -21,7 +21,7 @@
                   <span class="text-danger">*</span>
                 </strong> Prezime:
               </label>
-              <input class="form-control" id="surname" name="surname" type="text">
+              <input class="form-control" id="surname" formControlName="surname" type="text">
             </div>
             <div class="form-group my-3">
               <label for="email">
@@ -29,7 +29,7 @@
                   <span class="text-danger">*</span>
                 </strong> Adresa e-pošte:
               </label>
-              <input class="form-control" id="email" name="email" type="email">
+              <input class="form-control" id="email" formControlName="email" type="email">
             </div>
             <div class="form-group my-3">
               <label for="password">
@@ -37,7 +37,7 @@
                   <span class="text-danger">*</span>
                 </strong> Lozinka:
               </label>
-              <input class="form-control" id="password" name="password" type="password">
+              <input class="form-control" id="password" formControlName="password" type="password">
             </div>
             <div class="form-group my-3">
               <label for="phone">
@@ -45,7 +45,7 @@
                   <span class="text-danger">*</span>
                 </strong> Broj telefona:
               </label>
-              <input class="form-control" id="phone" name="phone" type="text">
+              <input class="form-control" id="phone" formControlName="phone" type="text">
             </div>
             <div class="form-group my-3">
               <label for="address">
@@ -53,7 +53,7 @@
                   <span class="text-danger">*</span>
                 </strong> Adresa:
               </label>
-              <input class="form-control" id="address" name="address" type="text">
+              <input class="form-control" id="address" formControlName="address" type="text">
             </div>
           </form>
         </div>
@@ -65,8 +65,8 @@
               </button>
             </div>
             <div class="col-6 text-end">
-              <a class="btn btn-link" routerLink="" title="Prijavite se">
-                Prijavite se
+              <a class="btn btn-link" routerLink="" title="Imate registrovan nalog? Prijavite se.">
+                Imate registrovan nalog? Prijavite se.
               </a>
             </div>
           </div>

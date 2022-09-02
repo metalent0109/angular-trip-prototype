@@ -1,3 +1,39 @@
-<div class="container-fluid">
-  <router-outlet></router-outlet>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/trips']">
+            <i class="fa-solid fa-house me-1"></i> Naslovna
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/trips/favourites']">
+            <i class="fa-solid fa-star me-1"></i> Potencijalna putovanja
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/trips/booked']">
+            <i class="fa-solid fa-suitcase-rolling me-1"></i> Predstojeća putovanja
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/trips/visited']">
+            <i class="fa-solid fa-clock-rotate-left me-1"></i> Istorija putovanja
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/sign-out']">
+            <i class="fa-solid fa-right-from-bracket me-1"></i> Odjavite se
+          </a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+          <a class="nav-link" [routerLink]="['/cart']" title="Korpa (0 | 0.00)">
+            <i class="fa-solid fa-cart-shopping me-2"></i> Korpa (0 | 0.00)
+          </a>
+        </span>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
