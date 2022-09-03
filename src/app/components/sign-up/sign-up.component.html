@@ -11,37 +11,75 @@
               <label for="name">
                 <strong>Ime: <span class="text-danger">*</span></strong>
               </label>
-              <input class="form-control rounded-1" [formControlName]="passenger.name" id="name" type="text">
+              <input class="form-control rounded-1" formControlName="name" id="name" type="text">
+              <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="text-danger">
+                <strong>
+                  <small *ngIf="name?.errors?.['required']">Ime je obavezno!</small>
+                  <small *ngIf="name?.errors?.['maxLength']">Maksimalna dužina je 32 karaktera!</small>
+                  <small *ngIf="name?.errors?.['pattern']">Ime nije validno!</small>
+                </strong>
+              </div>
             </div>
             <div class="form-group my-3">
               <label for="surname">
                 <strong>Prezime: <span class="text-danger">*</span></strong>
               </label>
               <input class="form-control rounded-1" formControlName="surname" id="surname" type="text">
+              <div *ngIf="surname?.invalid && (surname?.dirty || surname?.touched)" class="text-danger">
+                <strong>
+                  <small *ngIf="surname?.errors?.['required']">Prezime je obavezno!</small>
+                  <small *ngIf="surname?.errors?.['maxLength']">Maksimalna dužina je 32 karaktera!</small>
+                  <small *ngIf="surname?.errors?.['pattern']">Prezime nije validno!</small>
+                </strong>
+              </div>
             </div>
             <div class="form-group my-3">
               <label for="email">
                 <strong>Adresa e-pošte: <span class="text-danger">*</span></strong>
               </label>
               <input class="form-control rounded-1" formControlName="email" id="email" type="email">
+              <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="text-danger">
+                <strong>
+                  <small *ngIf="email?.errors?.['required']">Adresa e-pošte je obavezna!</small>
+                  <small *ngIf="email?.errors?.['email']">Adresa e-pošte nije validna!</small>
+                </strong>
+              </div>
             </div>
             <div class="form-group my-3">
               <label for="password">
                 <strong>Lozinka: <span class="text-danger">*</span></strong>
               </label>
               <input class="form-control rounded-1" formControlName="password" id="password" type="password">
+              <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="text-danger">
+                <strong>
+                  <small *ngIf="password?.errors?.['required']">Lozinka je obavezna!</small>
+                  <small *ngIf="password?.errors?.['minLength']">Lozinka mora da sadrži minimum 8 karaketra!</small>
+                </strong>
+              </div>
             </div>
             <div class="form-group my-3">
               <label for="phone">
                 <strong>Broj telefona: <span class="text-danger">*</span></strong>
               </label>
               <input class="form-control rounded-1" formControlName="phone" id="phone" type="text">
+              <div *ngIf="phone?.invalid && (phone?.dirty || phone?.touched)" class="text-danger">
+                <strong>
+                  <small *ngIf="phone?.errors?.['required']">Broj telefona je obavezan!</small>
+                  <small *ngIf="phone?.errors?.['pattern']">Broj telefona nije validan!</small>
+                </strong>
+              </div>
             </div>
             <div class="form-group my-3">
               <label for="address">
                 <strong>Adresa: <span class="text-danger">*</span></strong>
               </label>
               <input class="form-control rounded-1" formControlName="address" id="address" type="text">
+              <div *ngIf="address?.invalid && (address?.dirty || address?.touched)" class="text-danger">
+                <strong>
+                  <small *ngIf="address?.errors?.['required']">Adresa je obavezna!</small>
+                  <small *ngIf="address?.errors?.['maxLength']">Maksimalna dužina je 32 karaktera!</small>
+                </strong>
+              </div>
             </div>
           </form>
         </div>

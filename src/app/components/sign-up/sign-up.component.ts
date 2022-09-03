@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 import {Passenger} from "../../models/passenger";
 import {PassengerRepository} from "../../repository/passenger.repository";
 import {v4 as uuid} from "uuid";
+import {ValidationService} from "../../services/validation.service";
 
 @Component({
   selector: 'app-sign-up',
@@ -27,11 +28,19 @@ export class SignUpComponent implements OnInit {
     visited: [],
   };
 
-  public passengerFrom: FormGroup = this.formBuilder.group(this.passenger);
+  public passengerFrom: FormGroup = new FormGroup({
+    name: new FormControl(this.passenger.name, this.validationService.text(32)),
+    surname: new FormControl(this.passenger.surname, this.validationService.text(32)),
+    email: new FormControl(this.passenger.email, this.validationService.email()),
+    password: new FormControl(this.passenger.password, this.validationService.password()),
+    phone: new FormControl(this.passenger.phone, this.validationService.phone()),
+    address: new FormControl(this.passenger.address, this.validationService.text(64)),
+  });
 
   constructor(
     private formBuilder: FormBuilder,
     private passengerRepository: PassengerRepository,
+    private validationService: ValidationService,
   ) {
   }
 
@@ -40,6 +49,32 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.passengerRepository.save(this.passengerFrom.value);
+    if (this.passengerFrom.valid) {
+      this.passengerRepository.save(this.passengerFrom.value);
+    }
+  }
+
+  get name(): any {
+    return this.passengerFrom.get('name');
+  }
+
+  get surname(): any {
+    return this.passengerFrom.get('surname');
+  }
+
+  get email(): any {
+    return this.passengerFrom.get('email');
+  }
+
+  get password(): any {
+    return this.passengerFrom.get('password');
+  }
+
+  get phone(): any {
+    return this.passengerFrom.get('phone');
+  }
+
+  get address(): any {
+    return this.passengerFrom.get('address');
   }
 }
