@@ -21,31 +21,26 @@ const routes: Routes = [
     component: SignUpComponent
   },
   {
-    path: 'trips',
+    path: 'trip',
     title: 'Ponuda putovanja',
     component: TripsComponent,
     children: [
       {
-        path: 'favourites',
-        title: 'Potencijalna putovanja',
-        component: TripsComponent,
-      },
-      {
-        path: 'booked',
-        title: 'Predstojeća putovanja',
-        component: TripsComponent,
-      },
-      {
-        path: 'visited',
-        title: 'Istorija putovanja',
+        path: ':uid',
+        title: 'Detalji putovanja',
         component: TripsComponent,
       },
     ]
   },
   {
-    path: 'trip/:uid',
-    title: 'Detalji putovanja',
-    component: TripsComponent,
+    path: 'booked',
+    title: 'Rezervacije',
+    component: SignUpComponent
+  },
+  {
+    path: 'favourites',
+    title: 'Omiljeni',
+    component: SignUpComponent
   },
   {
     path: 'cart',
