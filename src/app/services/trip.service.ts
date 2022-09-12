@@ -35,7 +35,11 @@ export class TripService {
   }
 
   getfavourites(): Array<Trip> {
-    return this.passengerRepository.getfavourites();
+    return this.passengerRepository.getFavourites();
+  }
+
+  getVisited(): Array<Trip> {
+    return this.passengerRepository.getVisited();
   }
 
   addToFavourites(trip: Trip): void {
@@ -119,12 +123,16 @@ export class TripService {
       trip: booked.trip,
       review: review,
     };
-    this.passengerRepository.done(visited);
-    this.tripRepository.review(visited);
+    const isComplete = this.passengerRepository.done(visited);
+    if (isComplete) {
+      window.location.reload();
+    } else {
+      Swal.fire("Trip completion is failed!");
+    }
   }
 
   tripRating(trip: Trip): number {
-    return trip.review.reduce((accumulator: number, review: Review) => accumulator + review.rate.valueOf(), 0);
+    return this.passengerRepository.tripRating(trip);
   }
 
   tripNumberOfReviews(trip: Trip): number {

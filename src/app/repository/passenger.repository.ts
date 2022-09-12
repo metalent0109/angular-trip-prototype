@@ -1,7 +1,8 @@
+import { Review } from './../models/review';
+import { Visited } from './../models/visited';
 import { Passenger } from './../models/passenger';
 import {Repository} from "./repository";
 import {Booked} from "../models/booked";
-import {Visited} from "../models/visited";
 import {Trip} from "../models/trip";
 import {Injectable} from "@angular/core";
 import { isNgTemplate } from "@angular/compiler";
@@ -32,7 +33,6 @@ export class PassengerRepository extends Repository<Passenger> {
     if (cart.find((t: Trip): boolean => t.uid === trip.uid) === undefined) {
       this.passenger.cart.push(trip);
       this.save(this.passenger);
-      console.log("passenger:", this.passenger);
     } 
   }
 
@@ -46,8 +46,7 @@ export class PassengerRepository extends Repository<Passenger> {
     const favourites: Array<Trip> = current_user.favourites;
     if (favourites.find((t: Trip): boolean => t.uid === trip.uid) === undefined) {
       current_user.favourites.push(trip);
-      const result = this.modify(current_user);
-      console.log("result:", result);
+      this.modify(current_user);
       return true;
     } else {
       return false;
@@ -68,7 +67,6 @@ export class PassengerRepository extends Repository<Passenger> {
     if (books.find((t: Booked): boolean => t.trip.uid === booked.trip.uid) === undefined) {
       current_user.booked.push(booked);
       this.modify(current_user);
-      console.log(current_user);
       return true;
     } else {
       return false;
@@ -80,9 +78,14 @@ export class PassengerRepository extends Repository<Passenger> {
     return current_user.booked.map((b: any) : Booked => b);
   }
 
-  getfavourites(): Array<Trip> {
+  getFavourites(): Array<Trip> {
     const current_user = this.current_user();
     return current_user.favourites.map((f: any) : Trip => f);
+  }
+
+  getVisited(): Array<Trip> {
+    const current_user = this.current_user();
+    return current_user.visited.map((f: any) : Trip => f.trip);
   }
 
   cancel(booked: Booked): boolean {
@@ -93,15 +96,37 @@ export class PassengerRepository extends Repository<Passenger> {
     return true;
   }
 
-  done(visited: Visited): void {
-    this.passenger.visited.push(visited);
-    this.modify(this.passenger);
+  done(visited: Visited): boolean {
+    const current_user = this.current_user();
+    current_user.visited.push(visited);
+    this.modify(current_user);
     this.delete(visited.trip);
+    return true;
+  }
+
+  tripRating(trip: Trip): number {
+    const all = this.findAll();
+    let sum = 0;
+    let num = 0;
+    for (let i=0; i<all.length; i++) {
+      for ( let j=0; j<all[i].visited.length; j++) {
+        if(all[i].visited[j].trip.uid === trip.uid) {
+          sum += parseInt(all[i].visited[j].review.rate);
+          num ++ ;
+        }
+      }
+    }
+    if (num) {
+      return sum/num;
+    } else {
+      return -1;
+    }
   }
 
   private delete(trip: Trip): void {
-    this.passenger.booked = this.passenger.booked.filter((b: Booked): boolean => b.uid !== trip.uid);
-    this.save(this.passenger);
+    const current_user = this.current_user();
+    current_user.booked = current_user.booked.filter((b: Booked): boolean => b.trip.uid !== trip.uid);
+    this.modify(current_user);
   }
   
   signup(passenger: Passenger): boolean {

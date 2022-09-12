@@ -23,7 +23,7 @@
                 <th class="align-middle text-center">Price</th>
                 <th class="align-middle text-center">Rating</th>
                 <th class="align-middle text-center">Details</th>
-                <th class="align-middle text-center">Finish</th>
+                <th class="align-middle text-center">Complete</th>
                 <th class="align-middle text-center">Remove</th>
               </tr>
               </thead>
@@ -43,7 +43,10 @@
                   <td class="align-middle text-center">{{ booked.trip.distance | number:'1.2-2' }}</td>
                   <td class="align-middle text-center">{{ booked.trip.duration | date:'hh:mm' }}</td>
                   <td class="align-middle text-center">{{ booked.trip.price | currency }}</td>
-                  <td class="align-middle text-center">{{ tripService.tripRating(booked.trip) | number:'1.2-2' }}</td>
+                  <td class="align-middle text-center" *ngIf="tripService.tripRating(booked.trip) !== -1; else rating">{{ tripService.tripRating(booked.trip) | number:'1.2-2' }}</td>
+                  <ng-template #rating>
+                    <td class="align-middle text-center">No rating</td>
+                  </ng-template>
                   <td class="align-middle text-center">
                     <a [routerLink]="['/details/', booked.trip.uid]" class="btn btn-info rounded-1" type="button"
                           title="Detalji">
@@ -92,7 +95,7 @@
                               Rate:
                             </div>
                             <div class="col-9">
-                              <select class="form-select" id="rate">
+                              <select class="form-select" [attr.id]="'rate'+i">
                                 <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -108,14 +111,12 @@
                               Comment:
                             </div>
                             <div class="col-9">
-                              <textarea class="form-control rounded-0" rows="4" id="comment">
-
-                              </textarea>
+                              <textarea class="form-control rounded-0" rows="4" [attr.id]="'comment'+i"></textarea>
                             </div>
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="this.completeTrip()">Confirm</button>
+                          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="this.completeTrip(booked, i)">Confirm</button>
                           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         </div>
                       </div>

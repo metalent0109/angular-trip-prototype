@@ -52,16 +52,10 @@ export class SignUpComponent implements OnInit {
     if (user) {
       this.router.navigate(['/trip']);
     }
-    // this.passengerFrom = this.formBuilder.group(
-    //   {
-    //     name: ['', [Validators.required, Validators.maxLength(32)]],
-    //     surname: ['', [Validators.required, Validators.maxLength(32)]],
-    //     email: ['', [Validators.required, Validators.email]],
-    //     password: ['', [Validators.required, Validators.minLength(8)]],
-    //     phone: ['', [Validators.required, Validators.pattern(/[0-9\+\-\ ]/)]],
-    //     address: ['', [Validators.required, Validators.maxLength(64)]],
-    //   }
-    // )
+    if(localStorage.getItem('refresh')) {
+      window.location.reload();
+      localStorage.removeItem('refresh');
+    }
   }
 
   onSubmit(): void {
@@ -74,6 +68,7 @@ export class SignUpComponent implements OnInit {
       this.passenger.address = this.passengerFrom.value.address;
       const isRegistered = this.passengerRepository.signup(this.passenger);
       if(isRegistered) {
+        localStorage.setItem('refresh', 'refresh');
         Swal.fire({
           title: 'Success',
           text: 'Successfully registered. Welcome to our website.'

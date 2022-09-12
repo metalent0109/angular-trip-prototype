@@ -16,6 +16,7 @@
             <thead>
             <tr class="bg-dark text-white">
               <th class="align-middle text-center">No</th>
+              <th class="align-middle text-center">Name</th>
               <th class="align-middle text-center">Type</th>
               <th class="align-middle text-center">Distance</th>
               <th class="align-middle text-center">Duration</th>
@@ -38,10 +39,14 @@
               <tr *ngFor="let trip of tripService.all(); let i = index" [attr.data-index]="i">
                 <td class="align-middle text-center">{{ i + 1 }}</td>
                 <td class="align-middle text-center">{{ trip.name }}</td>
+                <td class="align-middle text-center">{{ trip.type.toString().toUpperCase() }}</td>
                 <td class="align-middle text-center">{{ trip.distance | number:'1.2-2' }}</td>
                 <td class="align-middle text-center">{{ trip.duration | date:'hh:mm' }}</td>
                 <td class="align-middle text-center">{{ trip.price | currency }}</td>
-                <td class="align-middle text-center">{{ tripService.tripRating(trip) | number:'1.2-2' }}</td>
+                <td class="align-middle text-center" *ngIf="tripService.tripRating(trip) !== -1; else rating">{{ tripService.tripRating(trip) | number:'1.2-2' }}</td>
+                  <ng-template #rating>
+                    <td class="align-middle text-center">No rating</td>
+                  </ng-template>
                 <td class="align-middle text-center">
                   <a [routerLink]="['/trip/', trip.uid]" class="btn btn-info rounded-1" type="button"
                           title="Detalji">

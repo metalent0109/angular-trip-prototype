@@ -1,6 +1,9 @@
+import { Booked } from './../../models/booked';
 import {Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import {TripService} from "../../services/trip.service";
+import {Review} from "../../models/review";
+
 
 @Component({
   selector: 'app-booked',
@@ -22,11 +25,13 @@ export class BookedComponent implements OnInit {
     }
   }
 
-  completeTrip(): void {
-    // const select = document.getElementById("rate") as HTMLSelectElement;
-    // const rate = select.value;
-    // const input = document.getElementById("comment") as HTMLInputElement;
-    // const comment = input.value;
-    // console.log((<HTMLInputElement>document.getElementById("comment")).value);
+  completeTrip(booked: Booked, i: number): void {
+    const select = document.getElementById("rate"+i) as HTMLSelectElement;
+    const rate = select.value;
+    const comment = (<HTMLInputElement>document.getElementById("comment"+i)).value;
+    this.tripService.done(booked, <Review>{
+      note: comment,
+      rate: rate
+    });
   }
 }

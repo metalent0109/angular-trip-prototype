@@ -1,7 +1,8 @@
 export enum Rate {
-  RATE_1 = -2,
-  RATE_2 = -1,
-  RATE_3 = 0,
-  RATE_4 = 1,
-  RATE_5 = 2,
+  RATE_0 = 0,
+  RATE_1 = 1,
+  RATE_2 = 2,
+  RATE_3 = 3,
+  RATE_4 = 4,
+  RATE_5 = 5,
 }

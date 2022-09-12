@@ -26,22 +26,25 @@
               </tr>
               </thead>
               <tbody>
-              <tr *ngIf="tripService.all().length === 0; else trips">
+              <tr *ngIf="tripService.getVisited().length === 0; else visited">
                 <td class="align-middle text-center" colspan="10">
                     <span class="text-danger">
                       <strong>There is no reservation.</strong>
                     </span>
                 </td>
               </tr>
-              <ng-template #trips>
-                <tr *ngFor="let trip of tripService.all(); let i = index" [attr.data-index]="i">
+              <ng-template #visited>
+                <tr *ngFor="let trip of tripService.getVisited(); let i = index" [attr.data-index]="i">
                   <td class="align-middle text-center">{{ i + 1 }}</td>
                   <td class="align-middle text-center">{{ trip.name }}</td>
                   <td class="align-middle text-center">{{ trip.type.toString().toUpperCase() }}</td>
                   <td class="align-middle text-center">{{ trip.distance | number:'1.2-2' }}</td>
                   <td class="align-middle text-center">{{ trip.duration | date:'hh:mm' }}</td>
                   <td class="align-middle text-center">{{ trip.price | currency }}</td>
-                  <td class="align-middle text-center">{{ tripService.tripRating(trip) | number:'1.2-2' }}</td>
+                  <td class="align-middle text-center" *ngIf="tripService.tripRating(trip) !== -1; else rating">{{ tripService.tripRating(trip) | number:'1.2-2' }}</td>
+                  <ng-template #rating>
+                    <td class="align-middle text-center">No rating</td>
+                  </ng-template>
                   <td class="align-middle text-center">
                     <a [routerLink]="['/details/', trip.uid]" class="btn btn-info rounded-1" type="button"
                           title="Detalji">
