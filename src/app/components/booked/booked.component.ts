@@ -21,4 +21,12 @@ export class BookedComponent implements OnInit {
       this.router.navigate(['/sign-in']);
     }
   }
+
+  completeTrip(): void {
+    // const select = document.getElementById("rate") as HTMLSelectElement;
+    // const rate = select.value;
+    // const input = document.getElementById("comment") as HTMLInputElement;
+    // const comment = input.value;
+    // console.log((<HTMLInputElement>document.getElementById("comment")).value);
+  }
 }

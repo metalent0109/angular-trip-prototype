@@ -92,7 +92,7 @@
                               Rate:
                             </div>
                             <div class="col-9">
-                              <select class="form-select">
+                              <select class="form-select" id="rate">
                                 <option>0</option>
                                 <option>1</option>
                                 <option>2</option>
@@ -108,14 +108,14 @@
                               Comment:
                             </div>
                             <div class="col-9">
-                              <textarea class="form-control rounded-0" rows="4">
+                              <textarea class="form-control rounded-0" rows="4" id="comment">
 
                               </textarea>
                             </div>
                           </div>
                         </div>
                         <div class="modal-footer">
-                          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="tripService.cancel(booked)">Confirm</button>
+                          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="this.completeTrip()">Confirm</button>
                           <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         </div>
                       </div>
