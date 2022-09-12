@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailsComponent implements OnInit {
   
   uid = this.actRoute.snapshot.paramMap.get('id');
+  url = this.actRoute.snapshot.url.join().split(',');
+  
   constructor(
     public tripService: TripService,
     private actRoute: ActivatedRoute
@@ -17,6 +19,6 @@ export class DetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+   
   }
 }

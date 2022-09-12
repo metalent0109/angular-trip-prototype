@@ -45,10 +45,10 @@
                   <td class="align-middle text-center">{{ trip.price | currency }}</td>
                   <td class="align-middle text-center">{{ tripService.tripRating(trip) | number:'1.2-2' }}</td>
                   <td class="align-middle text-center">
-                    <a  class="btn btn-info rounded-1" type="button"
-                            title="Details">
-                      <i class="fa-solid fa-circle-info text-white"></i>
-                    </a>
+                    <a [routerLink]="['/details/', trip.uid]" class="btn btn-info rounded-1" type="button"
+                          title="Detalji">
+                    <i class="fa-solid fa-circle-info text-white"></i>
+                  </a>
                   </td>
                   <td class="align-middle text-center">
                     <button (click)="tripService.book(trip)" class="btn btn-success rounded-1" type="button"
@@ -57,11 +57,28 @@
                     </button>
                   </td>
                   <td class="align-middle text-center">
-                    <button (click)="tripService.removeFromFavourites(trip)" class="btn btn-warning rounded-1" type="button"
-                            title="Rezerviši">
+                    <button class="btn btn-warning rounded-1" type="button" 
+                            title="Rezerviši"  data-bs-toggle="modal" [attr.data-bs-target]="'#removeModal'+i">
                       <i class="fa-solid fa-trash"></i>
                     </button>
                   </td>
+                  <div class="modal" [attr.id]="'removeModal'+i">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Remove the trip from the favourites</h4>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                          Are you really sure to remove this trip from the favourites?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="tripService.removeFromFavourites(trip)">Confirm</button>
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </tr>
               </ng-template>
               </tbody>

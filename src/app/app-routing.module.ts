@@ -41,6 +41,11 @@ const routes: Routes = [
     component: DetailsComponent,
   },
   {
+    path: 'details/:id',
+    title: 'Detalji putovanja',
+    component: DetailsComponent,
+  },
+  {
     path: 'booked',
     title: 'Rezervacije',
     component: BookedComponent

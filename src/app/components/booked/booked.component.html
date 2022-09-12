@@ -23,6 +23,7 @@
                 <th class="align-middle text-center">Price</th>
                 <th class="align-middle text-center">Rating</th>
                 <th class="align-middle text-center">Details</th>
+                <th class="align-middle text-center">Finish</th>
                 <th class="align-middle text-center">Remove</th>
               </tr>
               </thead>
@@ -44,17 +45,82 @@
                   <td class="align-middle text-center">{{ booked.trip.price | currency }}</td>
                   <td class="align-middle text-center">{{ tripService.tripRating(booked.trip) | number:'1.2-2' }}</td>
                   <td class="align-middle text-center">
+                    <a [routerLink]="['/details/', booked.trip.uid]" class="btn btn-info rounded-1" type="button"
+                          title="Detalji">
+                    <i class="fa-solid fa-circle-info text-white"></i>
+                  </a>
+                  </td>
+                  <td class="align-middle text-center">
                     <button  class="btn btn-info rounded-1" type="button"
-                            title="Detalji">
-                      <i class="fa-solid fa-circle-info text-white"></i>
+                            title="Finish" data-bs-toggle="modal" [attr.data-bs-target]="'#finishBookModal'+i">
+                      <i class="fa-solid fa-rocket text-white"></i>
                     </button>
                   </td>
                   <td class="align-middle text-center">
-                    <button (click)="tripService.cancel(booked)" class="btn btn-warning rounded-1" type="button"
-                            title="Rezerviši">
+                    <button class="btn btn-warning rounded-1" type="button"
+                            title="Rezerviši" data-bs-toggle="modal" [attr.data-bs-target]="'#cancelModal'+i">
                       <i class="fa-sharp fa-solid fa-trash"></i>
                     </button>
                   </td>
+                  <div class="modal" [attr.id]="'cancelModal'+i">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Cancel a book</h4>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                          Are you really sure to cancel a book of this trip?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="tripService.cancel(booked)">Confirm</button>
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal" [attr.id]="'finishBookModal'+i">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h4 class="modal-title">Complete the trip</h4>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="row">
+                            <div class="col-3 text-center h6">
+                              Rate:
+                            </div>
+                            <div class="col-9">
+                              <select class="form-select">
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                              </select>
+                            </div>
+                          </div>
+                          <br />
+                          <div class="row">
+                            <div class="col-3 text-center h6">
+                              Comment:
+                            </div>
+                            <div class="col-9">
+                              <textarea class="form-control rounded-0" rows="4">
+
+                              </textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="tripService.cancel(booked)">Confirm</button>
+                          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </tr>
               </ng-template>
               </tbody>

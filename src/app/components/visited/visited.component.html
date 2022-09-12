@@ -23,7 +23,6 @@
                 <th class="align-middle text-center">Price</th>
                 <th class="align-middle text-center">Rating</th>
                 <th class="align-middle text-center">Details</th>
-                <th class="align-middle text-center">Rate</th>
               </tr>
               </thead>
               <tbody>
@@ -44,16 +43,10 @@
                   <td class="align-middle text-center">{{ trip.price | currency }}</td>
                   <td class="align-middle text-center">{{ tripService.tripRating(trip) | number:'1.2-2' }}</td>
                   <td class="align-middle text-center">
-                    <a  class="btn btn-info rounded-1" type="button"
-                            title="Detalji">
-                      <i class="fa-solid fa-circle-info text-white"></i>
-                    </a>
-                  </td>
-                  <td class="align-middle text-center">
-                    <button class="btn btn-success rounded-1" type="button"
-                            title="Rezerviši">
-                      <i class="fa-solid fa-star"></i>
-                    </button>
+                    <a [routerLink]="['/details/', trip.uid]" class="btn btn-info rounded-1" type="button"
+                          title="Detalji">
+                    <i class="fa-solid fa-circle-info text-white"></i>
+                  </a>
                   </td>
                 </tr>
               </ng-template>

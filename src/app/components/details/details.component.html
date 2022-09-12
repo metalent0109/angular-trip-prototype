@@ -11,9 +11,14 @@
                         
                     </div>
                     <div class="col-6">
-                        <h3 class="m-0">
-                        Trip details
+                        <h3 class="m-0" *ngIf="this.url[0] === 'trip'; else details">
+                            Trip details
                         </h3>
+                        <ng-template #details>
+                            <h3 class="m-0">
+                                Details
+                            </h3>
+                        </ng-template>
                     </div>
                 </div>
             </div>
@@ -51,7 +56,7 @@
                     </tbody>
                 </table>
                 <br />
-                <div class="row">
+                <div class="row" *ngIf="this.url[0] === 'trip'">
                     <div class="align-middle col-6 text-center">
                         <button (click)="tripService.book(tripService.getTripById(this.uid))" class="btn btn-success rounded-1 btn-primary" type="button"
                                 title="Rezerviši">

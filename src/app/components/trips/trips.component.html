@@ -49,8 +49,8 @@
                   </a>
                 </td>
                 <td class="align-middle text-center">
-                  <button (click)="tripService.book(trip)" class="btn btn-success rounded-1" type="button"
-                          title="Rezerviši">
+                  <button class="btn btn-success rounded-1" type="button"
+                          title="Rezerviši"  data-bs-toggle="modal" [attr.data-bs-target]="'#bookModal'+i">
                     <i class="fa-solid fa-circle-plus"></i>
                   </button>
                 </td>
@@ -60,6 +60,23 @@
                     <i class="fa-solid fa-star"></i>
                   </button>
                 </td>
+                <div class="modal" [attr.id]="'bookModal'+i">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h4 class="modal-title">Book a trip</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                      </div>
+                      <div class="modal-body">
+                        Are you really sure to book this trip?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="tripService.book(trip)">Confirm</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </tr>
             </ng-template>
             </tbody>
@@ -69,20 +86,4 @@
     </div>
   </div>
 </div>
-<div class="modal" id="bookModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">Book a trip</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        Are you really sure to book this trip?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirm</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+
