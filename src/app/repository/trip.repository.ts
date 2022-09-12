@@ -16,6 +16,12 @@ export class TripRepository extends Repository<Trip> {
     return e === null ? tripsFromFile.map((t: any) => <Trip>t) : JSON.parse(e);
   }
 
+  getTripByUId(uid: string | null): Trip {
+    let e: string | null = this.getFromLocalStorage();
+    return tripsFromFile.map((t: any) => <Trip>t).filter((t: Trip) => t.uid === uid)[0];
+    
+  }
+
   review(visited: Visited): void {
     this.modify(visited.trip);
   }

@@ -7,7 +7,7 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title: string = 'trip';
-  isLoggedIn: boolean = false;
+  isLoggedIn: string | null = localStorage.getItem('user');
 
   constructor() {
   }

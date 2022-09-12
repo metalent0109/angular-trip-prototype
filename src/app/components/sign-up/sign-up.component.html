@@ -6,7 +6,7 @@
           <h1 class="m-0">Registracija korisnika</h1>
         </div>
         <div class="card-body">
-          <form (ngSubmit)="onSubmit()" [formGroup]="passengerFrom" id="sign-up" method="post">
+          <form (ngSubmit)="onSubmit()" name="form" [formGroup]="passengerFrom" id="sign-up" method="post">
             <div class="form-group my-3">
               <label for="name">
                 <strong>Ime: <span class="text-danger">*</span></strong>

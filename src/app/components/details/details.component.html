@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+            <div class="card my-5">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-5">
+                        
+                    </div>
+                    <div class="col-6">
+                        <h3 class="m-0">
+                        Trip details
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <td class="col-4 text-center h5">Trip name:</td>
+                            <td class="col-8 text-center">{{ tripService.getTripById(this.uid).name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-4 text-center h5">Trip description:</td>
+                            <td class="col-8 text-center">{{ tripService.getTripById(this.uid).description }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-4 text-center h5">Trip type:</td>
+                            <td class="col-8 text-center">{{ tripService.getTripById(this.uid).type }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-4 text-center h5">Trip distance:</td>
+                            <td class="col-8 text-center">{{ tripService.getTripById(this.uid).distance | number:'1.2-2' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-4 text-center h5">Trip duration:</td>
+                            <td class="col-8 text-center">{{ tripService.getTripById(this.uid).duration | date:'hh:mm' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-4 text-center h5">Trip price:</td>
+                            <td class="col-8 text-center">{{ tripService.getTripById(this.uid).price | currency }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-4 text-center h5">Trip rating:</td>
+                            <td class="col-8 text-center">{{ tripService.tripRating(tripService.getTripById(this.uid)) | number:'1.2-2' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+                <div class="row">
+                    <div class="align-middle col-6 text-center">
+                        <button (click)="tripService.book(tripService.getTripById(this.uid))" class="btn btn-success rounded-1 btn-primary" type="button"
+                                title="Rezerviši">
+                            &nbsp;&nbsp;<i class="fa-solid fa-circle-plus"></i>&nbsp;Book&nbsp;&nbsp;&nbsp;
+                        </button>
+                    </div>
+                    <div class="align-middle col-6 text-center">
+                        <button (click)="tripService.addToFavourites(tripService.getTripById(this.uid))" class="btn btn-warning rounded-1 btn-primary" type="button"
+                                title="Planiraj">
+                            <i class="fa-solid fa-star"></i>&nbsp;favourites
+                        </button>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+  

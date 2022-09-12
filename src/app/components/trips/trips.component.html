@@ -6,13 +6,8 @@
           <div class="row">
             <div class="col-6">
               <h3 class="m-0">
-                <i class="fa-solid fa-plane-departure me-2"></i> Ponuda putovanja
+                <i class="fa-solid fa-plane-departure me-2"></i> Travel offer
               </h3>
-            </div>
-            <div class="col-6 text-end">
-              <button class="btn btn-primary rounded-1" type="button" title="Filteri">
-                <i class="fa-solid fa-filter"></i>
-              </button>
             </div>
           </div>
         </div>
@@ -20,16 +15,15 @@
           <table class="table table-striped table-hover">
             <thead>
             <tr class="bg-dark text-white">
-              <th class="align-middle text-center">R. Br.</th>
-              <th class="align-middle text-center">Naziv</th>
-              <th class="align-middle text-center">Vrsta</th>
-              <th class="align-middle text-center">Udaljenost</th>
-              <th class="align-middle text-center">Vreme putovanja</th>
-              <th class="align-middle text-center">Cena</th>
-              <th class="align-middle text-center">Ocena</th>
-              <th class="align-middle text-center">Detalji</th>
-              <th class="align-middle text-center">Rezerviši</th>
-              <th class="align-middle text-center">Planiraj</th>
+              <th class="align-middle text-center">No</th>
+              <th class="align-middle text-center">Type</th>
+              <th class="align-middle text-center">Distance</th>
+              <th class="align-middle text-center">Duration</th>
+              <th class="align-middle text-center">Price</th>
+              <th class="align-middle text-center">Rating</th>
+              <th class="align-middle text-center">Details</th>
+              <th class="align-middle text-center">Book</th>
+              <th class="align-middle text-center">favourites</th>
             </tr>
             </thead>
             <tbody>
@@ -44,7 +38,6 @@
               <tr *ngFor="let trip of tripService.all(); let i = index" [attr.data-index]="i">
                 <td class="align-middle text-center">{{ i + 1 }}</td>
                 <td class="align-middle text-center">{{ trip.name }}</td>
-                <td class="align-middle text-center">{{ trip.type.toString().toUpperCase() }}</td>
                 <td class="align-middle text-center">{{ trip.distance | number:'1.2-2' }}</td>
                 <td class="align-middle text-center">{{ trip.duration | date:'hh:mm' }}</td>
                 <td class="align-middle text-center">{{ trip.price | currency }}</td>
@@ -56,7 +49,7 @@
                   </a>
                 </td>
                 <td class="align-middle text-center">
-                  <button (click)="tripService.addToCart(trip)" class="btn btn-success rounded-1" type="button"
+                  <button (click)="tripService.book(trip)" class="btn btn-success rounded-1" type="button"
                           title="Rezerviši">
                     <i class="fa-solid fa-circle-plus"></i>
                   </button>
@@ -72,6 +65,23 @@
             </tbody>
           </table>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal" id="bookModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Book a trip</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        Are you really sure to book this trip?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-bs-dismiss="modal">Confirm</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

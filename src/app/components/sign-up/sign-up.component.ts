@@ -1,5 +1,7 @@
+import Swal from 'sweetalert2';
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import { Router } from '@angular/router';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Passenger} from "../../models/passenger";
 import {PassengerRepository} from "../../repository/passenger.repository";
 import {v4 as uuid} from "uuid";
@@ -39,18 +41,55 @@ export class SignUpComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private passengerRepository: PassengerRepository,
     private validationService: ValidationService,
   ) {
   }
 
   ngOnInit(): void {
-
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.router.navigate(['/trip']);
+    }
+    // this.passengerFrom = this.formBuilder.group(
+    //   {
+    //     name: ['', [Validators.required, Validators.maxLength(32)]],
+    //     surname: ['', [Validators.required, Validators.maxLength(32)]],
+    //     email: ['', [Validators.required, Validators.email]],
+    //     password: ['', [Validators.required, Validators.minLength(8)]],
+    //     phone: ['', [Validators.required, Validators.pattern(/[0-9\+\-\ ]/)]],
+    //     address: ['', [Validators.required, Validators.maxLength(64)]],
+    //   }
+    // )
   }
 
   onSubmit(): void {
     if (this.passengerFrom.valid) {
-      this.passengerRepository.save(this.passengerFrom.value);
+      this.passenger.name = this.passengerFrom.value.name;
+      this.passenger.surname = this.passengerFrom.value.surname;
+      this.passenger.email = this.passengerFrom.value.email;
+      this.passenger.password = this.passengerFrom.value.password;
+      this.passenger.phone = this.passengerFrom.value.phone;
+      this.passenger.address = this.passengerFrom.value.address;
+      const isRegistered = this.passengerRepository.signup(this.passenger);
+      if(isRegistered) {
+        Swal.fire({
+          title: 'Success',
+          text: 'Successfully registered. Welcome to our website.'
+        });
+        this.router.navigate(['/trip']);
+      } else {
+        Swal.fire({
+          title: 'Notice',
+          text: 'Email is duplicated. Please use the other email address.'
+        })
+      }
+    } else {
+      Swal.fire({
+        title: 'Error!',
+        text: 'Sorry.Fill out the forms correctly!'
+      })
     }
   }
 

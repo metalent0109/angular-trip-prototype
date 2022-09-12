@@ -30,7 +30,7 @@ export class ValidationService {
   phone(): Array<ValidatorFn> {
     return [
       Validators.required,
-      Validators.pattern('/\d/gi'),
+      Validators.pattern(/[0-9\+\-\ ]/),
     ];
   }
 }

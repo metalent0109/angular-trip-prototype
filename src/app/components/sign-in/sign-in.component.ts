@@ -1,6 +1,11 @@
+import Swal from 'sweetalert2';
 import {Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {PassengerRepository} from "../../repository/passenger.repository";
+import {ValidationService} from "../../services/validation.service";
 import {Auth} from "../../models/auth";
+
 
 @Component({
   selector: 'app-sign-in',
@@ -19,13 +24,43 @@ export class SignInComponent implements OnInit {
     ]),
   });
 
-  ngOnInit(): void {
+  constructor(
+    private router: Router,
+    private passengerRepository: PassengerRepository,
+    private validationService: ValidationService,
+  ) {
+  }
 
+
+  ngOnInit(): void {
+    const user = localStorage.getItem('user');
+    if (user) {
+      this.router.navigate(['/trip']);
+    }
+    if(localStorage.getItem('refresh')) {
+      window.location.reload();
+      localStorage.removeItem('refresh');
+    }
   }
 
   onSubmit(): void {
     if (this.authFrom.valid) {
-      console.log(this.authFrom.value);
+      const loginData = this.authFrom.value;
+      const loginResult = this.passengerRepository.signin(loginData.email, loginData.password);
+      if (loginResult == 'login_success') {
+        localStorage.setItem('refresh', 'refresh');
+        this.router.navigate(['/trip']);
+      } else if (loginResult == 'login_fail') {
+        Swal.fire({
+          title: 'Warning!',
+          text: 'Password is incorrect.Please type the correct password.'
+        });
+      } else {
+        Swal.fire({
+          title: 'Warning!',
+          text: 'No registered user! Please register first.'
+        });
+      }
     }
   }
 

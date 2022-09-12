@@ -1,5 +1,7 @@
+import Swal from 'sweetalert2';
 import {Review} from "../models/review";
 import {Trip} from "../models/trip";
+import {Passenger} from "../models/passenger";
 import {TripRepository} from "../repository/trip.repository";
 import {PassengerRepository} from "../repository/passenger.repository";
 import {Booked} from "../models/booked";
@@ -23,12 +25,44 @@ export class TripService {
     return this.tripRepository.findAll();
   }
 
+  getTripById(uid: string | null): Trip {
+    
+    return this.tripRepository.getTripByUId(uid);
+  }
+
+  getBooked(): Array<Booked> {
+    return this.passengerRepository.getBooked();
+  }
+
+  getfavourites(): Array<Trip> {
+    return this.passengerRepository.getfavourites();
+  }
+
   addToFavourites(trip: Trip): void {
-    this.passengerRepository.favourites(trip);
+    const isAdded = this.passengerRepository.favourites(trip);
+    if (isAdded) {
+      Swal.fire({
+        title: 'Success',
+        text: 'Successfully added to favourites!'
+      })
+    } else {
+      Swal.fire({
+        title: 'Notice',
+        text: 'Already added. Please add the other trip.'
+      });
+    }
   }
 
   removeFromFavourites(trip: Trip): void {
-    this.passengerRepository.removeFromFavourites(trip);
+    const isRemoved = this.passengerRepository.removeFromFavourites(trip);
+    if (isRemoved) {
+      window.location.reload();
+    } else {
+      Swal.fire({
+        'title': 'Warning!',
+        'text': 'Favourite removal is failed!.'
+      });
+    }
   }
 
   addToCart(trip: Trip): void {
@@ -40,18 +74,41 @@ export class TripService {
   }
 
   book(trip: Trip): void {
-    this.passengerRepository.book(<Booked>{
+    const isBooked = this.passengerRepository.book(<Booked>{
       uid: uuid(),
       createdAt: new Date(),
       updatedAt: new Date(),
       trip: trip,
       status: Status.BOOKED,
     });
+    if (isBooked) {
+      Swal.fire({
+        title: 'Success',
+        text: 'Successfully booked!'
+      });
+    } else {
+      Swal.fire({
+        title: 'Notice',
+        text: 'Already booked. Please book the other trip.'
+      });
+    }
   }
 
   cancel(booked: Booked): void {
     booked.status = Status.CANCELLED;
-    this.passengerRepository.cancel(booked);
+    const isCanceled = this.passengerRepository.cancel(booked);
+    if (isCanceled) {
+      // Swal.fire({
+      //   'title': 'Success',
+      //   'text': 'Trip is successfully canceled.'
+      // });
+      window.location.reload();
+    } else {
+      Swal.fire({
+        'title': 'Warning!',
+        'text': 'Trip cancel is failed!.'
+      });
+    }
   }
 
   done(booked: Booked, review: Review): void {

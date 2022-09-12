@@ -1,38 +1,53 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isLoggedIn">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/trips']" title="Naslovna">
-            <i class="fa-solid fa-house me-1"></i> Naslovna
+          <a class="nav-link" [routerLink]="['/trip']" title="Home">
+            <i class="fa-solid fa-house me-1"></i> Home
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/trips/favourites']" title="Potencijalna putovanja">
-            <i class="fa-solid fa-star me-1"></i> Potencijalna putovanja
+          <a class="nav-link" [routerLink]="['/trip']" title="Trips">
+            <i class="fa-solid fa-plane-departure me-1"></i> Trips
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/trips/booked']" title="Predstojeća putovanja">
-            <i class="fa-solid fa-suitcase-rolling me-1"></i> Predstojeća putovanja
+          <a class="nav-link" [routerLink]="['/booked']" title="Booked">
+            <i class="fa-solid fa-suitcase-rolling me-1"></i> Booked
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/trips/visited']" title="Istorija putovanja">
-            <i class="fa-solid fa-clock-rotate-left me-1"></i> Istorija putovanja
+          <a class="nav-link" [routerLink]="['/favourites']" title="favourites">
+            <i class="fa-solid fa-star me-1"></i> favourites
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/sign-out']" title="Odjavite se">
-            <i class="fa-solid fa-right-from-bracket me-1"></i> Odjavite se
+          <a class="nav-link" [routerLink]="['/visited']" title="Visited">
+            <i class="fa-solid fa-clock-rotate-left me-1"></i> Visited
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" [routerLink]="['/sign-in']" title="Sign in" >
+            <i class="fa-solid fa-sign-in me-1"></i> Sign in
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" [routerLink]="['/sign-up']" title="Sigin up">
+            <i class="fa-solid fa-right-from-bracket me-1"></i> Sigin up
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" [routerLink]="['/sign-out']" title="Sign out">
+            <i class="fa-solid fa-sign-out me-1"></i> Sign out
           </a>
         </li>
       </ul>
-      <span class="navbar-text">
-          <a class="nav-link" [routerLink]="['/cart']" title="Korpa (0 | 0.00)">
-            <i class="fa-solid fa-cart-shopping me-2"></i> Korpa (0 | 0.00)
-          </a>
-        </span>
+      <!-- <span class="navbar-text">
+        <a class="nav-link" [routerLink]="['/cart']" title="Korpa (0 | 0.00)">
+          <i class="fa-solid fa-cart-shopping me-2"></i> Korpa (0 | 0.00)
+        </a>
+      </span> -->
     </div>
   </div>
 </nav>
