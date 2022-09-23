@@ -1,6 +1,7 @@
 {
   "name": "trip",
   "version": "0.0.0",
+  "author": "metalentco",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
